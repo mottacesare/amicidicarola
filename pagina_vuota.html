@@ -1,0 +1,119 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Amici di Carola</title>
+	<link rel="icon" type="image/png" href="images/favicon.png"/>
+	<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="js/jquery.min.js"></script>
+	<!-- Custom Theme files -->
+	<link href="css/style.css" rel='stylesheet' type='text/css' />
+	<link rel="stylesheet" type="text/css" href="css/magnific-popup.css">
+	<!-- Custom Theme files -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+</script>
+<!--start-smoth-scrolling-->
+<script type="text/javascript" src="js/move-top.js"></script>
+<script type="text/javascript" src="js/easing.js"></script>
+
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		$(".scroll").click(function(event){
+			event.preventDefault();
+			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+		});
+	});
+</script>
+<link href='http://fonts.googleapis.com/css?family=Arimo:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700|Open+Sans:400italic,600italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+</head>
+<body>
+	<div class="main bg-effect">
+	</div>
+
+	<div style="  position: fixed;
+                left: 0;
+                right: 0;
+                z-index: 9999;">
+		<div>
+			<div class="header">
+				<div class="container">
+					<!-- logo -->
+					<div class="logo">
+						<a href="index.html"><img src="images/logo.png" title="Amici di Carola" />
+							<h1>Amici di Carola</h1><span>ONLUS</span></a>
+						</div>
+						<!-- /logo -->
+						<!-- top-nav -->
+						<div class="top-nav">
+							<span class="menu"> </span>
+							<ul>
+<!--<li class="active"><a href="index.html">About us</a></li>
+<li><a href="what.html"> What we do</a></li>
+<li><a href="donate.html">  Donate </a></li>
+<li><a href="blog.html"> Blog</a></li>
+<li><a href="contact.html">Contact us</a></li>-->
+
+<li><a class="top-nav-item" href="index.html">Home</a></li>
+<li class="active"><a class="top-nav-item" href="chi_siamo.html">Chi Siamo</a></li>
+<li><a class="top-nav-item" href="news.html">News</a></li>
+<li><a class="top-nav-item" href="eventi.html">Eventi</a></li>
+<li><a class="top-nav-item" href="galleria.html">Galleria</a></li>
+<li><a class="top-nav-item" href="contattaci.html">Contattaci</a></li>
+<div class="clearfix"> </div>
+</ul>
+</div>
+</div>
+
+<!-- script-for-nav -->
+<script>
+	$(document).ready(function(){
+		$("span.menu").click(function(){
+			$(".top-nav ul").slideToggle(300);
+		});
+	});
+</script>
+<!-- script-for-nav -->
+<!-- /top-nav -->
+<div class="clearfix"> </div>
+</div>
+</div>
+<!--start-parts-->
+<div class="parts-section">
+	<div class="container">
+		
+		
+		
+		
+		
+		
+		
+		
+			<!--COSE...->
+		
+		
+		
+		
+		
+		
+		<!--//End-foote-->
+		<script type="text/javascript">
+			$(document).ready(function() {
+			/*
+			var defaults = {
+			containerID: 'toTop', // fading element id
+			containerHoverID: 'toTopHover', // fading element hover id
+			scrollSpeed: 1200,
+			easingType: 'linear' 
+			};
+			*/
+			$().UItoTop({ easingType: 'easeOutQuart' });
+		});
+		</script>
+		<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+	</div>
+</div>
+</body>
+</html>
+
