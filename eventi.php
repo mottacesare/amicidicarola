@@ -9,11 +9,13 @@ echo "
 	<div class=\"parts-section\" style=\"height:100%;background-color:rgba(255,255,255,0.75);\">
 		<div class=\"container\">
 		
-			<div>
+			<div style=\"height:100px;\">
 			</div>";
 
-
-getFbJson();
+//get event
+$fb_events=getFbJsonEvent();
+//create event table
+createFbEventTable($fb_events);
 
 echo"			<!--//End-foote-->
 			<script type=\"text/javascript\">

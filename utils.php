@@ -115,88 +115,111 @@ function createPageHeader($page){
 }
 
 //
-function getFbJson(){
-	$def_fb=array(
+function getFbArr(){
+	$fb_arr=array(
 		"app_id"=>"798693420200388",
 		"app_pw"=>"65dc2b21fdfe05505752f2045be7c4ec",
 		"access_token"=>"798693420200388|WkUYM6V5l4xMkwVHsBWEhaVFyrU",
 		//
 		"page_id"=>"1580758738847218",//Pagina a caso
 		//"page_id"=>"228231327239925",//Ovas Logistix
-		"year_range"=>"4",
-		"fields"=>"id,name,description,location,venue,timezone,start_time,cover",
 	);
 	//
-	$def_fb["since_date"] = date('Y-01-01', strtotime('-' . $def_fb["year_range"] . ' years'));
-	$def_fb["until_date"] = date('Y-01-01', strtotime('+' . $def_fb["year_range"] . ' years'));
-	$def_fb["since_unix_timestamp"] = strtotime($def_fb["since_date"]);
-	$def_fb["until_unix_timestamp"] = strtotime($def_fb["until_date"]);
+	return $fb_arr;
+}
+
+//
+function getFbJsonEvent(){
+	$fb_arr=getFbArr();
+	//
+	$fb_arr["year_range"]="4";
+	$fb_arr["fields"]="id,name,description,location,venue,timezone,start_time,cover";
+	$fb_arr["since_date"] = date('Y-01-01', strtotime('-' . $fb_arr["year_range"] . ' years'));
+	$fb_arr["until_date"] = date('Y-01-01', strtotime('+' . $fb_arr["year_range"] . ' years'));
+	$fb_arr["since_unix_timestamp"] = strtotime($fb_arr["since_date"]);
+	$fb_arr["until_unix_timestamp"] = strtotime($fb_arr["until_date"]);
 	
-	$json_link="https://graph.facebook.com/".$def_fb["page_id"]."/events/attending/?fields=".$def_fb["fields"]."&access_token=".$def_fb["access_token"]."&since=".$def_fb["since_unix_timestamp"]."&until=".$def_fb["until_unix_timestamp"];
+	$json_link="https://graph.facebook.com/".$fb_arr["page_id"]."/events/attending/?fields=".$fb_arr["fields"]."&access_token=".$fb_arr["access_token"]."&since=".$fb_arr["since_unix_timestamp"]."&until=".$fb_arr["until_unix_timestamp"];
 	//
 	$json = file_get_contents($json_link);
 	$obj = json_decode($json, true, 512, JSON_BIGINT_AS_STRING);
 	//
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	echo "<table class='table table-hover table-responsive table-bordered'>";
+	return $obj;
+}
+
+//
+function createFbEventTable($obj){
+	echo "<table class='table table-responsive table-bordered' style=\"background-color:rgba(240, 163, 109, 0.85);\">";
 	
 	// count the number of events
 	$event_count = count($obj['data']);
 	
 	for($x=0; $x<$event_count; $x++){
-		$start_date = date( 'l, F d, Y', strtotime($obj['data'][$x]['start_time']));
-		// in my case, I had to subtract 9 hours to sync the time set in facebook
-		$start_time = date('g:i a', strtotime($obj['data'][$x]['start_time']) - 60 * 60 * 9);
+		//date
+		$start_date = 	getDayName(date("w",strtotime($obj['data'][$x]['start_time'])))." ".
+				date("d", strtotime($obj['data'][$x]['start_time']))." ".
+				getMonthName(date("n",strtotime($obj['data'][$x]['start_time'])))." ".
+				date("Y", strtotime($obj['data'][$x]['start_time']));
+		//hour
+		$start_time = date('H:i', strtotime($obj['data'][$x]['start_time']) - 60 * 60 * 0);
+		//
+		//img
 		$pic_big = isset($obj['data'][$x]['cover']['source']) ? $obj['data'][$x]['cover']['source'] : "https://graph.facebook.com/{$fb_page_id}/picture?type=large";
+		//
 		$eid = $obj['data'][$x]['id'];
 		$name = $obj['data'][$x]['name'];
 		$location = isset($obj['data'][$x]['location']) ? $obj['data'][$x]['location'] : "";
 		$description = isset($obj['data'][$x]['description']) ? $obj['data'][$x]['description'] : "";
 		//
-		//
-		//
-		echo "<tr>";
-		echo "<td rowspan='6' style='width:20em;'>";
-		echo "<img src='{$pic_big}' width='200px' />";
-		echo "</td>";
-		echo "</tr>";
-
-		echo "<tr>";
-		echo "<td style='width:15em;'>What:</td>";
-		echo "<td><b>{$name}</b></td>";
-		echo "</tr>";
-
-		echo "<tr>";
-		echo "<td>When:</td>";
-		echo "<td>{$start_date} at {$start_time}</td>";
-		echo "</tr>";
-
-		echo "<tr>";
-		echo "<td>Where:</td>";
-		echo "<td>{$location}</td>";
-		echo "</tr>";
-
-		echo "<tr>";
-		echo "<td>Description:</td>";
-		echo "<td>{$description}</td>";
-		echo "</tr>";
-
-		echo "<tr>";
-		echo "<td>Facebook Link:</td>";
-		echo "<td>";
-		echo "<a href='https://www.facebook.com/events/{$eid}/' target='_blank'>View on Facebook</a>";
-		echo "</td>";
-		echo "</tr>";
+		echo "
+			<tr><td rowspan='3' style='width:20em;'><img src='{$pic_big}' width='200px' /></td></tr>
+			
+			<tr><td style=\"font-size:155%;vertical-align:middle;\"><b><div>{$name}</div></b></td></tr>
+			<tr><td style=\"font-size:120%;vertical-align:middle;\">
+				<div style=\"margin-bottom:10px;\">{$start_date} alle ore {$start_time}</div>
+				<div style=\"margin-bottom:10px;\">{$location}</div>
+				<div style=\"margin-bottom:10px;\">-</div>
+				<div style=\"margin-bottom:10px;\">{$description}</div>
+				<div style=\"margin-bottom:10px;\"><a style=\"color:blue;text-decoration:underline;\" href='https://www.facebook.com/events/{$eid}/' target='_blank'>Vai a Facebook</a></div>
+			</td></tr>
+		";
 	}
 	echo"</table>";
+}
+
+//
+function getDayName($num){
+	$day_arr=array(
+		"0"=>"Domenica",
+		"1"=>"Lunedì",
+		"2"=>"Martedì",
+		"3"=>"Mercoledì",
+		"4"=>"Giovedì",
+		"5"=>"Venerdì",
+		"6"=>"Sabato",
+	);
+	//
+	return $day_arr[$num];
+}
+
+//
+function getMonthName($num){
+	$month_arr=array(
+		"1"=>"Gennaio",
+		"2"=>"Febbraio",
+		"3"=>"Marzo",
+		"4"=>"Aprile",
+		"5"=>"Maggio",
+		"6"=>"Giugno",
+		"7"=>"Luglio",
+		"8"=>"Agosto",
+		"9"=>"Settembre",
+		"10"=>"Ottobre",
+		"11"=>"Novembre",
+		"12"=>"Dicembre",
+	);
+	//
+	return $month_arr[$num];
 }
 
 ?>
