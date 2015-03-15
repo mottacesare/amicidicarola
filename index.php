@@ -25,7 +25,7 @@ echo "
 
 					<div class=\"portfolio photo mix_all\" data-cat=\"photo\" style=\"display: inline-block; opacity: 1;\">
 						<div class=\"portfolio-wrapper\">		
-							<a href=\"eventi.html\" class=\"b-link-stripe b-animate-go   swipebox\"  title=\"Image Title\">
+							<a href=\"eventi.php\" class=\"b-link-stripe b-animate-go   swipebox\"  title=\"Image Title\">
 								<img src=\"images/menu_eventi.jpg\" /><div class=\"b-wrapper\"><h2 class=\"b-animate b-from-left    b-delay03 \"><img src=\"images/search.png\" alt=\"\"/></h2>
 							</div></a>
 						</div>
@@ -37,7 +37,7 @@ echo "
 
 					<div class=\"portfolio card mix_all\" data-cat=\"card\" style=\"display: inline-block; opacity: 1;\">
 						<div class=\"portfolio-wrapper\">		
-							<a href=\"news.html\" class=\"b-link-stripe b-animate-go   swipebox\"  title=\"Image Title\">
+							<a href=\"news.php\" class=\"b-link-stripe b-animate-go   swipebox\"  title=\"Image Title\">
 								<img src=\"images/menu_news.jpg\" /><div class=\"b-wrapper\"><h2 class=\"b-animate b-from-left    b-delay03 \"><img src=\"images/search.png\" alt=\"\"/></h2>
 							</div></a>
 						</div>
@@ -49,7 +49,7 @@ echo "
 
 					<div class=\"portfolio photo mix_all\" data-cat=\"photo\" style=\"display: inline-block; opacity: 1;\">
 						<div class=\"portfolio-wrapper\">		
-							<a href=\"galleria.html\" class=\"b-link-stripe b-animate-go   swipebox\"  title=\"Image Title\">
+							<a href=\"galleria.php\" class=\"b-link-stripe b-animate-go   swipebox\"  title=\"Image Title\">
 								<img src=\"images/menu_galleria.jpg\" /><div class=\"b-wrapper\"><h2 class=\"b-animate b-from-left    b-delay03 \"><img src=\"images/search.png\" alt=\"\"/></h2>
 							</div></a>
 						</div>
@@ -61,7 +61,7 @@ echo "
 
 					<div class=\"portfolio photo mix_all\" data-cat=\"photo\" style=\"display: inline-block; opacity: 1;\">
 						<div class=\"portfolio-wrapper\">		
-							<a href=\"contattaci.html\" class=\"b-link-stripe b-animate-go   swipebox\"  title=\"Image Title\">
+							<a href=\"contattaci.php\" class=\"b-link-stripe b-animate-go   swipebox\"  title=\"Image Title\">
 								<img src=\"images/menu_contattaci.jpg\" /><div class=\"b-wrapper\"><h2 class=\"b-animate b-from-left    b-delay03 \"><img src=\"images/search.png\" alt=\"\"/></h2>
 							</div></a>
 						</div>
