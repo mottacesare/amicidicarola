@@ -12,10 +12,8 @@ echo "
 			<div style=\"height:100px;\">
 			</div>";
 
-//get event
-$fb_events=getFbJsonEvent();
-//create event table
-createFbEventTable($fb_events);
+$fb_events=getFbJsonEvents();
+createFbEventsTable($fb_events);
 
 echo"			<!--//End-foote-->
 			<script type=\"text/javascript\">

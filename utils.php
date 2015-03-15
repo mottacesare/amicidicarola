@@ -121,15 +121,16 @@ function getFbArr(){
 		"app_pw"=>"65dc2b21fdfe05505752f2045be7c4ec",
 		"access_token"=>"798693420200388|WkUYM6V5l4xMkwVHsBWEhaVFyrU",
 		//
-		"page_id"=>"1580758738847218",//Pagina a caso
-		//"page_id"=>"228231327239925",//Ovas Logistix
+		//"page_id"=>"228231327239925", //Ovas Logistix
+		"page_id"=>"1580758738847218", //Pagina a caso
+		//"page_id"=>"246776938837029", //Amici di Carola
 	);
 	//
 	return $fb_arr;
 }
 
 //
-function getFbJsonEvent(){
+function getFbJsonEvents(){
 	$fb_arr=getFbArr();
 	//
 	$fb_arr["year_range"]="4";
@@ -138,7 +139,7 @@ function getFbJsonEvent(){
 	$fb_arr["until_date"] = date('Y-01-01', strtotime('+' . $fb_arr["year_range"] . ' years'));
 	$fb_arr["since_unix_timestamp"] = strtotime($fb_arr["since_date"]);
 	$fb_arr["until_unix_timestamp"] = strtotime($fb_arr["until_date"]);
-	
+	//
 	$json_link="https://graph.facebook.com/".$fb_arr["page_id"]."/events/attending/?fields=".$fb_arr["fields"]."&access_token=".$fb_arr["access_token"]."&since=".$fb_arr["since_unix_timestamp"]."&until=".$fb_arr["until_unix_timestamp"];
 	//
 	$json = file_get_contents($json_link);
@@ -146,11 +147,10 @@ function getFbJsonEvent(){
 	//
 	return $obj;
 }
-
 //
-function createFbEventTable($obj){
-	echo "<table class='table table-responsive table-bordered' style=\"background-color:rgba(240, 163, 109, 0.85);\">";
-	
+function createFbEventsTable($obj){
+	//echo "<table class='table table-responsive table-bordered' style=\"background-color:rgba(240, 163, 109, 0.85);\">";
+	//
 	// count the number of events
 	$event_count = count($obj['data']);
 	
@@ -171,7 +171,7 @@ function createFbEventTable($obj){
 		$location = isset($obj['data'][$x]['location']) ? $obj['data'][$x]['location'] : "";
 		$description = isset($obj['data'][$x]['description']) ? $obj['data'][$x]['description'] : "";
 		//
-		echo "
+		/*echo "
 			<tr><td rowspan='3' style='width:20em;'><img src='{$pic_big}' width='200px' /></td></tr>
 			
 			<tr><td style=\"font-size:155%;vertical-align:middle;\"><b><div>{$name}</div></b></td></tr>
@@ -182,11 +182,44 @@ function createFbEventTable($obj){
 				<div style=\"margin-bottom:10px;\">{$description}</div>
 				<div style=\"margin-bottom:10px;\"><a style=\"color:blue;text-decoration:underline;\" href='https://www.facebook.com/events/{$eid}/' target='_blank'>Vai a Facebook</a></div>
 			</td></tr>
-		";
+		";*/
+		
+		echo "<table class='table table-hover table-responsive table-bordered' style=\"background-color:rgba(200, 200, 200, 0.85);margin-bottom:40px;\">";
+		echo "<tr>";
+		echo "<td rowspan='6' style='width:20em;'>";
+		echo "<img src='{$pic_big}' width='200px' />";
+		echo "</td>";
+		echo "</tr>";
+		
+		echo "<tr>";
+		echo "<td style='width:15em;'>Cosa:</td>";
+		echo "<td><b>{$name}</b></td>";
+		echo "</tr>";
+		
+		echo "<tr>";
+		echo "<td>Quando:</td>";
+		echo "<td>{$start_date} alle {$start_time}</td>";
+		echo "</tr>";
+		
+		echo "<tr>";
+		echo "<td>Dove:</td>";
+		echo "<td>{$location}</td>";
+		echo "</tr>";
+		
+		echo "<tr>";
+		echo "<td>Descrizione:</td>";
+		echo "<td>{$description}</td>";
+		echo "</tr>";
+		
+		echo "<tr>";
+		echo "<td>Link Facebook:</td>";
+		echo "<td>";
+		echo "<a style=\"color:blue;text-decoration:underline;\" href='https://www.facebook.com/events/{$eid}/' target='_blank'>Vai a Facebook</a>";
+		echo "</td>";
+		echo "</tr>";
+		echo"</table>";
 	}
-	echo"</table>";
 }
-
 //
 function getDayName($num){
 	$day_arr=array(
@@ -201,7 +234,6 @@ function getDayName($num){
 	//
 	return $day_arr[$num];
 }
-
 //
 function getMonthName($num){
 	$month_arr=array(
@@ -220,6 +252,80 @@ function getMonthName($num){
 	);
 	//
 	return $month_arr[$num];
+}
+
+//
+function getFbJsonAlbums(){
+	$fb_arr=getFbArr();
+	//
+	$json_link = "http://graph.facebook.com/".$fb_arr["page_id"]."/albums?fields=id,name,description,link,cover_photo,count";
+	//
+	$json = file_get_contents($json_link);
+	$obj = json_decode($json, true, 512, JSON_BIGINT_AS_STRING);
+	//
+	return $obj;
+}
+//
+function createFbAlbumsGallery($obj){
+	$album_count = count($obj['data']);
+	//
+	for($x=0; $x<$album_count; $x++){
+		$id = $obj['data'][$x]['id'];
+		$name = $obj['data'][$x]['name'];
+		$description = $obj['data'][$x]['description'];
+		$link = $obj['data'][$x]['link'];
+		$cover_photo = $obj['data'][$x]['cover_photo'];
+		$count = $obj['data'][$x]['count'];
+		//
+		// if you want to exclude an album, just add the name on the if statement
+		if($name!="Profile Pictures" && $name!="Cover Photos" && $name!="Timeline Photos"){
+			$show_pictures_link = "foto.php?album_id={$id}&album_name={$name}";
+			//
+			echo "<div class='col-md-4'>";
+			echo "<a href='{$show_pictures_link}'>";
+			echo "<img class='img-responsive' src='https://graph.facebook.com/{$cover_photo}/picture' alt=''>";
+			echo "</a>";
+			echo "<h3>";
+			echo "<a href='{$show_pictures_link}'>{$name}</a>";
+			echo "</h3>";
+			//
+			$count_text="Photo";
+			if($count>1){
+				$count_text="Foto";
+			}
+			//
+			echo "<p>";
+			echo "<div style='color:#888;'>{$count} {$count_text} / <a style=\"color:blue;text-decoration:underline;\" href='{$link}' target='_blank'>Vai a Facebook</a></div>";
+			echo $description;
+			echo "</p>";
+			echo "</div>";
+		}
+	}
+}
+//
+function getFbJsonPhotos($album_id){
+	$fb_arr=getFbArr();
+	//
+	$json_link = "http://graph.facebook.com/".$album_id."/photos?fields=source";
+	//
+	$json = file_get_contents($json_link);
+	$obj = json_decode($json, true, 512, JSON_BIGINT_AS_STRING);
+	//
+	return $obj;
+}
+//
+function createFbPhotosGallery($obj){
+	$photo_count = count($obj['data']);
+	//
+	for($x=0; $x<$photo_count; $x++){
+		$source = $obj['data'][$x]['source'];
+		//
+		echo "<a href='{$source}' data-gallery>";
+		echo "<div class='photo-thumb' style='background: url({$source}) 50% 50% no-repeat;'>";
+		//
+		echo "</div>";
+		echo "</a>";
+	}
 }
 
 ?>
