@@ -8,9 +8,12 @@ echo "
 	<!--start-parts-->
 	<div class=\"parts-section\" style=\"height:100%;background-color:rgba(255,255,255,0.75);\">
 		<div class=\"container\">
-		
-			<div>
+			
+			<div style=\"height:75px;\">
 				<h3>Chi Siamo</h3>
+			</div>";
+//
+echo "			<div>
 				<h5>
 	
 	La nascita dell' <b>Associazione Onlus \"Amici di Carola\"</b> ha inizio da qui...

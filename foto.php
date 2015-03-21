@@ -2,15 +2,16 @@
 
 require_once("utils.php");
 //
-/*reatePageHeader("foto.php");
+createPageHeader("foto.php");
 
 echo "	
 	<!--start-parts-->
 	<div class=\"parts-section\" style=\"height:100%;background-color:rgba(255,255,255,0.75);\">
 		<div class=\"container\">
 		
-			<div>
-			</div>";*/
+			<div style=\"height:75px;\">
+				<h3><a href=\"galleria.php\">Galleria</a> > Foto</h3>
+			</div>";
 
 $album_id = isset($_GET['album_id']) ? $_GET['album_id'] : die('Album ID not specified.');
 $album_name = isset($_GET['album_name']) ? $_GET['album_name'] : die('Album name not specified.');

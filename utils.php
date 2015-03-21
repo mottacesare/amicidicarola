@@ -221,7 +221,7 @@ function createFbEventsTable($obj){
 			</td></tr>
 		";*/
 		
-		echo "<table class='table table-hover table-responsive table-bordered' style=\"background-color:rgba(200, 200, 200, 0.85);margin-bottom:40px;\">";
+		echo "<table class='table table-hover table-responsive table-bordered' style=\"background-color:rgba(200, 200, 200, 0.70);margin-bottom:40px;\">";
 		echo "<tr>";
 		echo "<td rowspan='6' style='width:20em;'>";
 		echo "<img src='{$pic_big}' width='200px' />";
@@ -482,21 +482,24 @@ function createFbFeedsTable($obj){
 		//
 		//
 		//
-		echo "<div class='row'>";
-		echo "<div class='col-md-4'>";
-		//
-		echo "<div class='profile-info'>";
-		echo "<div class='profile-photo'>";
-		echo "<img src='".$fb_arr["photo_src"]."' />";
-		echo "</div>";
-		//
-		echo "<div class='profile-name'>";
-		echo "<div>";
-		echo "<a href='https://fb.com/".$fb_arr["page_id"]."' target='_blank'>{$page_name}</a> ";
-		echo "ha condiviso ";
+		echo "
+			<div class='row' style='background-color:rgba(200, 200, 200, 0.50);margin-bottom:40px;padding:10px 0px 10px 10px;'>
+				<div class='col-md-4'>
+					<div class='profile-info'>
+						<div class='profile-photo'>
+							<img src='".$fb_arr["photo_src"]."' />
+						</div>
+						<div class='profile-name'>
+							<div>
+								<a href='https://fb.com/".$fb_arr["page_id"]."' target='_blank'>{$page_name}</a> 
+								ha condiviso 
+		";
 		//
 		if($type=="status"){
 			$link="https://www.facebook.com/".$fb_arr["page_id"]."/posts/{$post_id}";
+		}
+		else if($type=="event"){
+			$link="https://www.facebook.com".$link;
 		}
 		//
 		switch($type){
@@ -526,45 +529,52 @@ function createFbFeedsTable($obj){
 			break;
 		}
 		//
-		echo "<a href='{$link}' target='_blank'>{$type_fix}</a>";
-		echo "</div>";
-		echo "<div class='time-ago'>".$ago_value."</div>";
-		echo "</div>";
-		echo "</div>";
-		//
-		echo "<div class='profile-message'>{$message}</div>";
-		echo "</div>";
-		echo "</div>";
-		echo "<hr />";
-		//
-		//
-		//
-		echo "<div class='col-md-8'>";
-		echo "<a href='{$link}' target='_blank' class='post-link'>";
-		echo "<div class='post-content'>";
+		echo "
+								<a href='{$link}' target='_blank'>{$type_fix}</a>
+							</div>
+							<div class='time-ago'>".$ago_value."</div>
+						</div>
+					</div>
+					
+					<div class='profile-message'>{$message}</div>
+				</div>
+				
+				<div class='col-md-8'>
+					<a href='{$link}' target='_blank' class='post-link'>
+						<div class='post-content'>
+		";
 		//
 		if($type=="status"){
-			echo "<div class='post-status'>";
-			echo "Vai a Facebook";
-			echo "</div>";
+			echo "
+							<div class='post-status'>
+							Vai a Facebook
+							</div>
+			";
 		}
 		else if($type=="photo"){
-			echo "<img src='https://graph.facebook.com/{$object_id}/picture' />";
+			echo "				<img src='https://graph.facebook.com/{$object_id}/picture' />";
 		}
 		else{
 			if($picture_url){
-				echo "<div class='post-picture'>";
-				echo "<img src='{$picture_url}' />";
-				echo "</div>";
+				echo "
+							<div class='post-picture'>
+								<img src='{$picture_url}' />
+							</div>
+				";
 			}
-			echo "<div class='post-info'>";
-			echo "<div class='post-info-name'>{$name}</div>";
-			echo "<div class='post-info-description'>{$description}</div>";
-			echo "</div>";
+			echo "
+							<div class='post-info'>
+								<div class='post-info-name'>{$name}</div>
+								<div class='post-info-description'>{$description}</div>
+							</div>
+			";
 		}
-		echo "</div>";
-		echo "</a>";
-		echo "</div>";
+		echo "
+						</div>
+					</a>
+				</div>
+			</div>
+		";
 	}
 	//
 	echo "	</div>";
