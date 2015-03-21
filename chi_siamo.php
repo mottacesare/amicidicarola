@@ -13,7 +13,7 @@ echo "
 				<h3>Chi Siamo</h3>
 				<h5>
 	
-	La nascita dell' Associazione Onlus <b>\"Amici di Carola\"</b> ha inizio da qui...
+	La nascita dell' <b>Associazione Onlus \"Amici di Carola\"</b> ha inizio da qui...
 	
 	<br/><br/>
 	

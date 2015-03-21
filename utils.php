@@ -15,8 +15,14 @@ if(!function_exists("pr") && !function_exists("pre")) {
 	}
 }
 
+function hideErrors(){
+	error_reporting(0);
+}
+
 //
 function createPageHeader($page){
+	hideErrors();
+	//
 	$page_arr=array(
 		"Home"=>"index.php",
 		"Chi Siamo"=>"chi_siamo.php",
@@ -365,6 +371,7 @@ function getFbJsonFeeds(){
 	$fb_arr["limit"] = 10;
 	$fb_arr["fields"] = "id,message,picture,link,name,description,type,icon,created_time,from,object_id";
 	//
+	//aggiungere il parametro per la lingua&locale=it_IT
 	$json_link = "https://graph.facebook.com/".$fb_arr["page_id"]."/feed?access_token=".$fb_arr["access_token"]."&fields=".$fb_arr["fields"]."&limit=".$fb_arr["limit"];
 	//
 	$json = file_get_contents($json_link);
@@ -451,7 +458,7 @@ function createFbFeedsTable($obj){
 		// picture from the link
 		$picture = $obj['data'][$x]['picture'];
 		$picture_url_arr = explode('&url=', $picture);
-		$picture_url = urldecode($picture_url_arr[1]);
+		$picture_url = isset($picture_url_arr[1]) ? urldecode($picture_url_arr[1]) : $picture_url_arr[0];
 		//
 		// link posted
 		$link = $obj['data'][$x]['link'];
@@ -486,15 +493,42 @@ function createFbFeedsTable($obj){
 		echo "<div class='profile-name'>";
 		echo "<div>";
 		echo "<a href='https://fb.com/".$fb_arr["page_id"]."' target='_blank'>{$page_name}</a> ";
-		echo "shared a ";
+		echo "ha condiviso ";
 		//
 		if($type=="status"){
 			$link="https://www.facebook.com/".$fb_arr["page_id"]."/posts/{$post_id}";
 		}
 		//
-		echo "<a href='{$link}' target='_blank'>{$type}</a>";
+		switch($type){
+			case "status":
+			echo "uno ";
+			$type_fix="stato";
+			break;
+			
+			case "event":
+			echo "un ";
+			$type_fix="evento";
+			break;
+			
+			case "photo":
+			echo "una ";
+			$type_fix="foto";
+			break;
+			
+			case "link":
+			echo "un ";
+			$type_fix="link";
+			break;
+			
+			case "video":
+			echo "un ";
+			$type_fix="video";
+			break;
+		}
+		//
+		echo "<a href='{$link}' target='_blank'>{$type_fix}</a>";
 		echo "</div>";
-		echo "<div class='time-ago'>{$ago_value}</div>";
+		echo "<div class='time-ago'>".$ago_value."</div>";
 		echo "</div>";
 		echo "</div>";
 		//
@@ -511,7 +545,7 @@ function createFbFeedsTable($obj){
 		//
 		if($type=="status"){
 			echo "<div class='post-status'>";
-			echo "View on Facebook";
+			echo "Vai a Facebook";
 			echo "</div>";
 		}
 		else if($type=="photo"){
@@ -547,24 +581,24 @@ function time_elapsed_string($datetime, $full = false) {
     $diff->d -= $diff->w * 7;
  
     $string = array(
-        'y' => 'year',
-        'm' => 'month',
-        'w' => 'week',
-        'd' => 'day',
-        'h' => 'hour',
-        'i' => 'minute',
-        's' => 'second',
+        'y' => array('anno','anni'),
+        'm' => array('mese','mesi'),
+        'w' => array('settimana','settimane'),
+        'd' => array('giorno','giorni'),
+        'h' => array('ora','ore'),
+        'i' => array('minuto','minuti'),
+        's' => array('secondo','secondi'),
     );
     foreach ($string as $k => &$v) {
         if ($diff->$k) {
-            $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
+            $v = $diff->$k . ' ' . ($diff->$k > 1 ? $v[1] : $v[0]);
         } else {
             unset($string[$k]);
         }
     }
  
     if (!$full) $string = array_slice($string, 0, 1);
-    return $string ? implode(', ', $string) . ' ago' : 'just now';
+    return $string ? implode(', ', $string) . ' fa' : 'just now';
 }
 
 ?>
