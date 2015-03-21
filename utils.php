@@ -67,51 +67,81 @@ function createPageHeader($page){
 	
 	
 	<body>
-		<div class=\"main bg-effect\"></div>
+		<div class=\"main bg-effect\">
+		</div>
 
-		<div style=\"	position: fixed;
-				left: 0;
-				right: 0;
-				z-index: 9999;\">
+		<div style=\"position:absolute; left:0; right:0; z-index:9999; overflow-x:hidden;\">
 			<div>
 				<div class=\"header\">
 					<div class=\"container\">
 						<!-- logo -->
 						<div class=\"logo\">
-							<a href=\"index.php\"><img src=\"images/logo.png\" title=\"Amici di Carola\" />
-								<h1>Amici di Carola</h1><span>ONLUS</span></a>
-							</div>
-							<!-- /logo -->
-							<!-- top-nav -->
-							<div class=\"top-nav\">
-								<span class=\"menu\"> </span>
-								<ul>";
+							<a href=\"index.php\">
+								<img src=\"images/logo.png\" title=\"Amici di Carola\" />
+								<h1>Amici di Carola</h1>
+								<span>ONLUS</span>
+							</a>
+						</div>
+						<!-- /logo -->
+						<!-- top-nav -->
+						<div class=\"top-nav\">
+							<span class=\"menu\">
+							</span>
+							<ul>";
 	//menu
 	foreach($page_arr as $pa_k=>$pa_v){
-		echo "<li class=\"".($pa_v==$page?"active":"")."\"><a class=\"top-nav-item\" href=\"".$pa_v."\">".$pa_k."</a></li>";
+		echo "						<li class=\"".($pa_v==$page?"active":"")."\">
+									<a class=\"top-nav-item\" href=\"".$pa_v."\">".$pa_k."</a>
+								</li>";
 	}
 	//
 	echo "							
-									<div class=\"clearfix\"> </div>
-								</ul>
-							</div>
-						</div>
-						
-						<!-- script-for-nav -->
-						<script>
-							$(document).ready(function(){
-								$(\"span.menu\").click(function(){
-									$(\".top-nav ul\").slideToggle(300);
-								});
-							});
-						</script>
-						<!-- script-for-nav -->
-						
-						<!-- /top-nav -->
-						<div class=\"clearfix\"> </div>
+								<div class=\"clearfix\"> </div>
+							</ul>
 						</div>
 					</div>
+					
+					<!-- script-for-nav -->
+					<script>
+						$(document).ready(function(){
+							$(\"span.menu\").click(function(){
+								$(\".top-nav ul\").slideToggle(300);
+							});
+						});
+					</script>
+					<!-- script-for-nav -->
+					
+					<!-- /top-nav -->
+					<div class=\"clearfix\">
+					</div>
+					
+				</div>
+			</div>
 	";
+}
+
+function createPageFooter(){
+	echo"			
+					<!--//End-foote-->
+					<script type=\"text/javascript\">
+						$(document).ready(function() {
+						/*
+						var defaults = {
+						containerID: 'toTop', // fading element id
+						containerHoverID: 'toTopHover', // fading element hover id
+						scrollSpeed: 1200,
+						easingType: 'linear' 
+						};
+						*/
+						$().UItoTop({ easingType: 'easeOutQuart' });
+					});
+					</script>
+					<a href=\"#\" id=\"toTop\" style=\"display: block;\"> <span id=\"toTopHover\" style=\"opacity: 1;\"> </span></a>
+				</div>
+			</div>
+		</div>
+	</body>
+	</html>";
 }
 
 //
