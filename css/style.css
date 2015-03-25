@@ -17,6 +17,16 @@ body{
 
 /*START CUSTOMS*/
 
+					.shadow-effect{
+						box-shadow: 5px 5px 10px #AAAAAA !important;
+					}
+					.shadow-effect2{
+						box-shadow: 0 0 15px 7px #BBBBBB !important;
+					}
+					.shadow-effect3{
+						box-shadow: 4px 4px 5px #AAAAAA !important;
+					}
+					
 					.bg-effect{
 					    position: fixed !important;
 					    left: 0 !important;

@@ -221,7 +221,7 @@ function createFbEventsTable($obj){
 			</td></tr>
 		";*/
 		
-		echo "<table class='table table-hover table-responsive table-bordered' style=\"background-color:rgba(200, 200, 200, 0.70);margin-bottom:40px;\">";
+		echo "<table class='table table-hover table-responsive table-bordered shadow-effect' style=\"background-color:rgba(200, 200, 200, 0.70);margin-bottom:40px;\">";
 		echo "<tr>";
 		echo "<td rowspan='6' style='width:20em;'>";
 		echo "<img src='{$pic_big}' width='200px' />";
@@ -320,7 +320,7 @@ function createFbAlbumsGallery($obj){
 			//
 			echo "<div class='col-md-4'>";
 			echo "<a href='{$show_pictures_link}'>";
-			echo "<img class='img-responsive' src='https://graph.facebook.com/{$cover_photo}/picture' alt=''>";
+			echo "<img class='img-responsive shadow-effect' src='https://graph.facebook.com/{$cover_photo}/picture' alt=''>";
 			echo "</a>";
 			echo "<h3>";
 			echo "<a href='{$show_pictures_link}'>{$name}</a>";
@@ -358,7 +358,7 @@ function createFbPhotosGallery($obj){
 		$source = $obj['data'][$x]['source'];
 		//
 		echo "<a href='{$source}' data-gallery>";
-		echo "<div class='photo-thumb' style='background: url({$source}) 50% 50% no-repeat;'>";
+		echo "<div class='photo-thumb shadow-effect3' style='margin: 0 1em 1em 0;background: url({$source}) 50% 50% no-repeat;'>";
 		//
 		echo "</div>";
 		echo "</a>";
@@ -483,7 +483,7 @@ function createFbFeedsTable($obj){
 		//
 		//
 		echo "
-			<div class='row' style='background-color:rgba(200, 200, 200, 0.50);margin-bottom:40px;padding:10px 0px 10px 10px;'>
+			<div class='row shadow-effect' style='background-color:rgba(200, 200, 200, 0.50);margin-bottom:40px;padding:10px 0px 10px 10px;'>
 				<div class='col-md-4'>
 					<div class='profile-info'>
 						<div class='profile-photo'>

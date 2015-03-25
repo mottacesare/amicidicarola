@@ -11,7 +11,7 @@ echo "
 			<div class=\"portfolio-top\">
 				<div id=\"portfoliolist\">
 
-					<div class=\"portfolio app mix_all\" data-cat=\"app\" style=\"display: inline-block; opacity: 1;\">
+					<div class=\"portfolio app mix_all shadow-effect2\" data-cat=\"app\" style=\"display: inline-block; opacity: 1;\">
 						<div class=\"portfolio-wrapper\">		
 							<a href=\"chi_siamo.php\" class=\"b-link-stripe b-animate-go   swipebox\"  title=\"Image Title\">
 								<img src=\"images/menu_chi_siamo2.jpg\" /><div class=\"b-wrapper\"><h2 class=\"b-animate b-from-left    b-delay03 \"><img src=\"images/search.png\" alt=\"\"/></h2>
@@ -23,7 +23,7 @@ echo "
 						</div>
 					</div>
 
-					<div class=\"portfolio photo mix_all\" data-cat=\"photo\" style=\"display: inline-block; opacity: 1;\">
+					<div class=\"portfolio photo mix_all shadow-effect2\" data-cat=\"photo\" style=\"display: inline-block; opacity: 1;\">
 						<div class=\"portfolio-wrapper\">		
 							<a href=\"eventi.php\" class=\"b-link-stripe b-animate-go   swipebox\"  title=\"Image Title\">
 								<img src=\"images/menu_eventi.jpg\" /><div class=\"b-wrapper\"><h2 class=\"b-animate b-from-left    b-delay03 \"><img src=\"images/search.png\" alt=\"\"/></h2>
@@ -35,7 +35,7 @@ echo "
 						</div>
 					</div>
 
-					<div class=\"portfolio card mix_all\" data-cat=\"card\" style=\"display: inline-block; opacity: 1;\">
+					<div class=\"portfolio card mix_all shadow-effect2\" data-cat=\"card\" style=\"display: inline-block; opacity: 1;\">
 						<div class=\"portfolio-wrapper\">		
 							<a href=\"news.php\" class=\"b-link-stripe b-animate-go   swipebox\"  title=\"Image Title\">
 								<img src=\"images/menu_news.jpg\" /><div class=\"b-wrapper\"><h2 class=\"b-animate b-from-left    b-delay03 \"><img src=\"images/search.png\" alt=\"\"/></h2>
@@ -47,7 +47,7 @@ echo "
 						</div>
 					</div>
 
-					<div class=\"portfolio photo mix_all\" data-cat=\"photo\" style=\"display: inline-block; opacity: 1;\">
+					<div class=\"portfolio photo mix_all shadow-effect2\" data-cat=\"photo\" style=\"display: inline-block; opacity: 1;\">
 						<div class=\"portfolio-wrapper\">		
 							<a href=\"galleria.php\" class=\"b-link-stripe b-animate-go   swipebox\"  title=\"Image Title\">
 								<img src=\"images/menu_galleria.jpg\" /><div class=\"b-wrapper\"><h2 class=\"b-animate b-from-left    b-delay03 \"><img src=\"images/search.png\" alt=\"\"/></h2>
@@ -59,7 +59,7 @@ echo "
 						</div>
 					</div>
 
-					<div class=\"portfolio photo mix_all\" data-cat=\"photo\" style=\"display: inline-block; opacity: 1;\">
+					<div class=\"portfolio photo mix_all shadow-effect2\" data-cat=\"photo\" style=\"display: inline-block; opacity: 1;\">
 						<div class=\"portfolio-wrapper\">		
 							<a href=\"contattaci.php\" class=\"b-link-stripe b-animate-go   swipebox\"  title=\"Image Title\">
 								<img src=\"images/menu_contattaci.jpg\" /><div class=\"b-wrapper\"><h2 class=\"b-animate b-from-left    b-delay03 \"><img src=\"images/search.png\" alt=\"\"/></h2>
