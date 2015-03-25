@@ -158,8 +158,8 @@ function getFbArr(){
 		"access_token"=>"798693420200388|WkUYM6V5l4xMkwVHsBWEhaVFyrU",
 		//
 		//"page_id"=>"228231327239925", //Ovas Logistix
-		"page_id"=>"1580758738847218", //Pagina a caso
-		//"page_id"=>"246776938837029", //Amici di Carola
+		//"page_id"=>"1580758738847218", //Pagina a caso
+		"page_id"=>"246776938837029", //Amici di Carola
 	);
 	//
 	return $fb_arr;
