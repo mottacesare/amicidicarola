@@ -36,6 +36,7 @@ function createPageHeader($page){
 	<!DOCTYPE HTML>
 	<html>
 	<head>
+		<meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\">
 		<title>Amici di Carola</title>
 		<link rel=\"icon\" type=\"image/png\" href=\"images/favicon.png\"/>
 		<link href=\"css/bootstrap.css\" rel='stylesheet' type='text/css' />
@@ -155,7 +156,8 @@ function getFbArr(){
 	$fb_arr=array(
 		"app_id"=>"798693420200388",
 		"app_pw"=>"65dc2b21fdfe05505752f2045be7c4ec",
-		"access_token"=>"798693420200388|WkUYM6V5l4xMkwVHsBWEhaVFyrU",
+		//"access_token"=>"798693420200388|WkUYM6V5l4xMkwVHsBWEhaVFyrU",
+		"access_token"=>"CAACEdEose0cBABIRE0k1Mhk9Yghvpnirofwjh2YJ5CulO1KpmPmPh8QYIqURMkuAQNIGFpxoQAOdiua9XaFGPzCV3h1PUUT4JqdsPvcWLH1R6O7fGNcQbZAnyNxraQVGR7UFEjGXpvBeRZCsOJE3oNxz5g0aoIdMK6FFQdfOLomvV9p7xmEuvY0DqOZAjm5ZCfOilSAlhP2Tj4wOJOU6",
 		//
 		//"page_id"=>"228231327239925", //Ovas Logistix
 		//"page_id"=>"1580758738847218", //Pagina a caso
